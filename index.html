@@ -2,29 +2,78 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
+        <!-- BT -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Chat laboratoria</h1>
+       
+      <div class="container mt-3">
+          <h1>Chat laboratoria</h1>
+          <div id="loginContainer">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <div class="form-inline">
+                <input id="email" type="email" placeholder="Ingresa email" class="form-control form-control-sm mr-sm-2">
+                <input id="password" type="password" placeholder="Ingresa contraseña" class="form-control form-control-sm mr-sm-2">
+                <button class="btn btn-dark my-2 my-sm-0 btn-sm" onclick="login()" type="button" value=LOGIN>Logear</button>
+              <button class="btn btn-danger my-2 my-sm-0 btn-sm ml-2"  type="button" value=REGISTER data-toggle="modal" data-target="#exampleModal">Registrar</button>
+            
+            </div>
+          </nav>
+        </div>
+        </div>
+
+        <!-- Modal -->
+        <!-- Formulario registro -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Formulario de Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input id="register" type="email" placeholder="Ingresa email" class="form-control" >
+            <div class="mt-2"></div>
+            <input id="login"  type="password" placeholder="Ingresa contraseña" class="form-control" >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="register()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
         <div id="loginContainer">
             <div id="loggedIn">
                 <p id="username"></p>
                 <input id="logOutButton" onclick="logout()" type="button" value="LOG OUT">
+                
             </div>
             <div id="loggedOut">
-                <input id="email" type="email">
-                <input id="password" type="password">
+               <!--  
                 <input id="register" onclick="register()" type="button" value="REGISTER">
                 <input id="login" onclick="login()" type="button" value="LOGIN">
-                <input id="loginFacebook" type="button" onclick="loginFacebook()" value="LOGIN FACEBOOK">
+                -->
+                          <!-- Mostrar al usuario algo en pantalla -->
+              <!-- div vacio -->
+              <div id="contenido">
+                <button id="loginFacebook"type="button" class="btn btn-primary btn-lg" onclick="loginFacebook()" value="LOGIN FACEBOOK">Sign in with Facebook</button>
             </div>
         </div>
         <div>
-            <div id="messageContainer">
 
             </div>
+            <div id="messageContainer">
             <input id="messageArea" type="text">
             <input id="sendButton" type="button" value="SEND" onclick="sendMessage()">
+            <input id="starsCounter" type="button" value="STARS" onclick="sendStars()">
+            <div id="contenido2"></div>
+              
         </div>
+   
      
 <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 <script>
@@ -40,5 +89,9 @@
   firebase.initializeApp(config);
 </script>
         <script src="app.js"></script>
+        <!-- JS BT -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -1,3 +1,13 @@
 #messageContainer{
     height: 70vh;
 }
+
+#loginFacebook{
+    margin-left: 15em;
+    margin-top: 2em;
+}
+
+#messageContainer{
+    margin-left: 15em;
+    margin-top: 5em;
+}

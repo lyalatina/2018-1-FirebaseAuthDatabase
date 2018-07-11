@@ -26,7 +26,7 @@ window.onload = ()=>{
     //on child_added
     firebase.database().ref('messages')
         .limitToLast(1)
-        .on('child_added', (newMessage)=>{
+        .on('child_added', (newMessage)=>{ 
             messageContainer.innerHTML += `
                 <p>Nombre : ${newMessage.val().creatorName}</p>
                 <p>${newMessage.val().text}</p>
@@ -34,6 +34,7 @@ window.onload = ()=>{
         });
 };
 
+//funcion registro usuario
 function register(){
     const emailValue = email.value;
     const passwordValue = password.value; 
@@ -47,6 +48,7 @@ function register(){
         });
 }
 
+//funcion inicio sesion usuario registrado
 function login(){
     const emailValue = email.value;
     const passwordValue = password.value;
@@ -60,6 +62,14 @@ function login(){
         });
 }
 
+//Función aparece un mensaje en pantalla para usuarios activos
+function apareceUsuario(){
+    let  contenidoUsuario = document.getElementById('contenido');
+    
+    contenidoUsuario.innerHTML = "Bienvenido!";
+
+}
+//Cerrar sesión
 function logout(){
     firebase.auth().signOut()
         .then(()=>{
@@ -67,6 +77,32 @@ function logout(){
         })
         .catch();
 }
+
+
+function observador(){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+         console.log("Existe usuario activo")
+         apareceUsuario();
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          var providerData = user.providerData;
+          // ...
+        } else {
+          console.log("No existe usuario activo")
+          // ...
+        }
+      });
+}
+
+//cuando se inicie la app.js la funcion se ejecutara inmediatamente
+observador();
+
+
 
 function loginFacebook(){
     const provider = new firebase.auth.FacebookAuthProvider();
@@ -97,6 +133,22 @@ function sendMessage(){
     firebase.database().ref(`messages/${newMessageKey}`).set({
         creator : currentUser.uid,
         creatorName : currentUser.displayName,
-        text : messageAreaText
+        text : messageAreaText,
+        
     });
 }
+
+
+function sendStars(){
+    var starCountRef = document.getElementById('contenido');
+    firebase.database().ref('messages/' + messageId + '/starCount');
+    starCountRef.on('value', function(snapshot) {
+      updateStarCount(postElement, snapshot.val());
+      contenidoStars.innerHTML = "";
+    });
+}
+
+
+
+    
+    
